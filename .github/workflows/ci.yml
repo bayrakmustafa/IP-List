@@ -1,0 +1,27 @@
+name: Update ASN and IP List
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 16 * * *"
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install whois -y
+          
+      - name: Whois Query
+        run: |
+          whois -h whois.radb.net -- '-i origin AS32934' | grep -Eo '([0-9.]+){4}/[0-9]+' > Facebook_IP.list
+          whois -h whois.radb.net -- '-i origin AS43515' | grep -Eo '([0-9.]+){4}/[0-9]+' > Youtube_IP.list
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update IP List
