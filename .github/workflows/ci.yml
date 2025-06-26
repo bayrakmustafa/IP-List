@@ -19,8 +19,18 @@ jobs:
           
       - name: Whois Query
         run: |
-          whois -h whois.radb.net -- '-i origin AS32934' | grep -Eo '([0-9.]+){4}/[0-9]+' > Facebook_IP.list
-          whois -h whois.radb.net -- '-i origin AS11344' | grep -Eo '([0-9.]+){4}/[0-9]+' > Youtube_IP.list
+          whois -h whois.radb.net -- '-i origin AS32934'  | grep -Eo '([0-9.]+){4}/[0-9]+' > Facebook_IP.list
+          whois -h whois.radb.net -- '-i origin AS11344'  | grep -Eo '([0-9.]+){4}/[0-9]+' > Youtube_IP.list
+          whois -h whois.radb.net -- '-i origin AS9009'   | grep -Eo '([0-9.]+){4}/[0-9]+' > VPN_Nord1.list
+          whois -h whois.radb.net -- '-i origin AS20448'  | grep -Eo '([0-9.]+){4}/[0-9]+' > VPN_VPNtranet.list
+          whois -h whois.radb.net -- '-i origin AS209854' | grep -Eo '([0-9.]+){4}/[0-9]+' > VPN_Surfshark.list
+          whois -h whois.radb.net -- '-i origin AS136787' | grep -Eo '([0-9.]+){4}/[0-9]+' > VPN_Nord2.list
+          whois -h whois.radb.net -- '-i origin AS32751'  | grep -Eo '([0-9.]+){4}/[0-9]+' > VPN_Octo.list
+          whois -h whois.radb.net -- '-i origin AS212238' | grep -Eo '([0-9.]+){4}/[0-9]+' > VPN_Datacamp.list
+          whois -h whois.radb.net -- '-i origin AS50525'  | grep -Eo '([0-9.]+){4}/[0-9]+' > VPN_Privado.list
+          whois -h whois.radb.net -- '-i origin AS207137' | grep -Eo '([0-9.]+){4}/[0-9]+' > VPN_Packethub.list
+          whois -h whois.radb.net -- '-i origin AS60729'  | grep -Eo '([0-9.]+){4}/[0-9]+' > VPN_Tor.list
+          whois -h whois.radb.net -- '-i origin AS398391' | grep -Eo '([0-9.]+){4}/[0-9]+' > VPN_Checkpoint.list
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
